@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | Food Store</title>
+</head>
+
+<body class="pagina-auth" hidden>
+    <header>
+        <span class="marca">🍔 Food Store</span>
+    </header>
+
+    <main>
+        <section class="tarjeta">
+            <h1>Crear cuenta</h1>
+
+            <form id="form">
+                <div class="campo">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email"
+                        placeholder="example@example.com">
+                </div>
+                <div class="campo">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required minlength="6"
+                        autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+                </div>
+                <div class="campo">
+                    <label for="confirmPassword">Repetir contraseña</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6"
+                        autocomplete="new-password" placeholder="********">
+                </div>
+
+                <p id="message" class="mensaje" role="alert"></p>
+
+                <button type="submit" class="btn">Registrarme</button>
+            </form>
+
+            <p class="tarjeta-pie">¿Ya tenés cuenta? <a href="/src/pages/auth/login/login.html">Ingresá</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Food Store — Desarrollo de Software</p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="./registro.ts"></script>
+</body>
+
+</html>
