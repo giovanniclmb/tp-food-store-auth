@@ -1,0 +1,279 @@
+/* =========================================================
+   Food Store — Hoja de estilos (Autenticación y Roles)
+   Basada en los tokens y componentes de la hoja original
+   ========================================================= */
+
+:root {
+  --color-primario: #ff6347;
+  --color-fondo: #f0f0f0;
+  --color-texto: #333;
+  --color-blanco: #fff;
+  --color-borde: #ddd;
+  --color-focus: #ff4500;
+  --color-error: #c0392b;
+  --radio: 5px;
+  --sombra: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --sombra-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --transicion: 0.3s ease;
+  --espacio: 20px;
+  --ancho-tarjeta: 400px;
+  --ancho-contenido: 1100px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+ * CRÍTICO para el guard: el navegador oculta [hidden] con display:none,
+ * pero cualquier regla nuestra con "display" (como body { display: grid })
+ * le gana y el contenido protegido se vería antes de validar la sesión.
+ */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+a {
+  color: var(--color-primario);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Header ---------- */
+header {
+  grid-area: header;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px var(--espacio);
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  box-shadow: var(--sombra);
+}
+
+.marca {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.usuario-info {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+header button:focus-visible {
+  outline-color: var(--color-blanco);
+}
+
+/* ---------- Main ---------- */
+main {
+  grid-area: main;
+  width: 100%;
+  max-width: var(--ancho-contenido);
+  margin: 0 auto;
+  padding: var(--espacio);
+}
+
+main > h1 {
+  margin: 0 0 15px;
+}
+
+/* ---------- Páginas de autenticación ---------- */
+.pagina-auth main {
+  display: grid;
+  place-items: center;
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: var(--ancho-tarjeta);
+  padding: 30px;
+  background-color: var(--color-blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta h1 {
+  margin: 0 0 var(--espacio);
+  font-size: 1.6rem;
+  text-align: center;
+  color: var(--color-primario);
+}
+
+.tarjeta form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tarjeta-pie {
+  margin: var(--espacio) 0 0;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* ---------- Formularios ---------- */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-weight: bold;
+}
+
+.campo input {
+  padding: 10px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  font: inherit;
+  transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.campo input:focus {
+  border-color: var(--color-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.2);
+}
+
+/* Solo marca error después de que el usuario interactuó con el campo */
+.campo input:user-invalid {
+  border-color: var(--color-error);
+}
+
+/* Mensaje de error/éxito: el color lo pone el TS; si está vacío no ocupa lugar */
+.mensaje {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+.mensaje:empty {
+  display: none;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  padding: 10px 20px;
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: 1px solid transparent;
+  border-radius: var(--radio);
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.btn:hover {
+  background-color: var(--color-focus);
+}
+
+/* Botón sobre fondo de color (header): contorno blanco */
+.btn-claro {
+  background-color: transparent;
+  border-color: var(--color-blanco);
+}
+
+.btn-claro:hover {
+  background-color: var(--color-blanco);
+  color: var(--color-primario);
+}
+
+/* ---------- Paneles (homes) ---------- */
+.panel {
+  padding: var(--espacio);
+  background-color: var(--color-blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  transition: box-shadow var(--transicion);
+}
+
+.panel:hover {
+  box-shadow: var(--sombra-hover);
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: var(--color-primario);
+}
+
+.panel p {
+  margin: 0;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  grid-area: footer;
+  padding: var(--espacio);
+  background-color: var(--color-texto);
+  color: var(--color-blanco);
+  text-align: center;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  header nav {
+    justify-content: center;
+  }
+
+  .tarjeta {
+    padding: var(--espacio);
+  }
+}
+
+/* ---------- Accesibilidad: menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
