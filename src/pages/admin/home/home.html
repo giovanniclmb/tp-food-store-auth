@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin | Food Store</title>
+</head>
+
+<body hidden>
+    <header>
+        <span class="marca">🍔 Food Store</span>
+        <nav>
+            <p id="userInfo" class="usuario-info"></p>
+            <button id="logoutButton" class="btn btn-claro">Cerrar sesión</button>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Panel de administración</h1>
+        <section class="panel">
+            <h2>Zona exclusiva de administradores</h2>
+            <p>Solo los usuarios con rol admin pueden ver esta página.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Food Store — Desarrollo de Software</p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="./home.ts"></script>
+</body>
+
+</html>
